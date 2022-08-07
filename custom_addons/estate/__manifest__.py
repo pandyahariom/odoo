@@ -11,7 +11,8 @@
     'data': [
         'security/ir.model.access.csv',
         'views/menu.xml',
-        'views/action_menu.xml',],
+        'views/action_menu.xml',
+        'views/menu_domain.xml',],
     'demo': []    ,
     'css': [],
     'installable': True,
