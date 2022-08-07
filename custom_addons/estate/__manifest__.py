@@ -7,7 +7,7 @@
     'summary': 'Track leads and close opportunities',
     'description': "",
     'website': 'https://www.odoo.com/page/crm',
-    'depends': [],
+    'depends': ['mail'],
     'data': [
         'security/ir.model.access.csv',
         'views/menu.xml',
