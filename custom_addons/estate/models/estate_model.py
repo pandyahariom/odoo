@@ -5,3 +5,4 @@ class Estate(models.Model):
     name=fields.Char(string="CustomerName")
     age=fields.Integer(string="Age")
     gender=fields.Selection([('male','Male'),('female','Female')],string="Gender")
+    active=fields.Boolean(string="Active or Archive",default=True)
