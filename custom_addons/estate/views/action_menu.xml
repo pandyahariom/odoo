@@ -8,6 +8,13 @@
     <search>
         <field name="name"/>
         <field name="gender"/>
+        <filter name="Gender_filter" string="Male" domain="[('gender','=','male')]" />
+        <filter name="Gender_female_filter" string="Female" domain="[('gender','=','female')]" />
+        <separator/>
+        <filter name="Gender_kid_filter" string="Kids" domain="[('age','&lt;=','5')]" />
+        <group expand="0" string="Group By">
+            <filter string="Gender" name="group_by_gender" context="{'group_by':'gender'}" />
+        </group>
     </search>
     </field>
    </record>
