@@ -2,20 +2,16 @@
 <odoo>
    <!-- Menu Items -->
     <menuitem
-        id="menu_hospital_root"
-        name="Hospital"
-        sequence="0"   
+        id="menu_estate_root"
+        name="Estate"
+        web_icon="estate,static\description\images.jpg"
+        sequence="0"  
     />
     <menuitem
-        id="menu_patient_master"
-        name="Patient Master"
-        parent="menu_hospital_root"
+        id="menu_property_master"
+        name="Property Master"
+        parent="menu_estate_root"
         sequence="0"   
-    />
-    <menuitem
-        id="menu_patient_details"
-        name="Patient Details"
-        parent="menu_patient_master"
-        sequence="0"   
+    />   
     />
 </odoo>

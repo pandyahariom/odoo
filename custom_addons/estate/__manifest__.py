@@ -9,7 +9,9 @@
     'website': 'https://www.odoo.com/page/crm',
     'depends': [],
     'data': [
-        'views/menu.xml',],
+        'security/ir.model.access.csv',
+        'views/menu.xml',
+        'views/action_menu.xml',],
     'demo': []    ,
     'css': [],
     'installable': True,

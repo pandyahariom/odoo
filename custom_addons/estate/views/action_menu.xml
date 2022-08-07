@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <!-- Search View -->
+   <record id="view_estate_property_search" model="ir.ui.view">
+    <field name="name">estate_property_search</field>
+    <field name="model">estate.property</field>
+    <field name="arch" type="xml">
+    <search>
+        <field name="name"/>
+        <field name="gender"/>
+    </search>
+    </field>
+   </record>
+
+
+   <!-- Tree View -->
+   <record id="view_estate_property_tree" model="ir.ui.view">
+    <field name="name">estate_property_tree</field>
+    <field name="model">estate.property</field>
+    <field name="arch" type="xml">
+    <tree>
+        <field name="name"/>
+        <field name="age"/>
+        <field name="gender"/>
+    </tree>
+    </field>
+   </record>
+
+   <!-- Form View -->
+   <record id="view_estate_property_form" model="ir.ui.view">
+    <field name="name">estate_property_form</field>
+    <field name="model">estate.property</field>
+    <field name="arch" type="xml">
+    <form>
+        <sheet>
+            <group>
+                <field name="name"/>
+                <field name="age"/>
+                <field name="gender"/>
+            </group>
+        </sheet>
+    </form>
+    </field>
+   </record>
+
+    <!-- Action -->
+   <record id="estate_action" model="ir.actions.act_window">
+            <field name="name">Estate</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">estate.property</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new Estate Property
+                </p><p>
+                    You must define a property you sell or purchase.
+                </p>
+            </field>
+        </record>
+
+    <!-- Menu Item with action -->
+    <menuitem
+        id="menu_property_details"
+        name="Property Details"
+        parent="menu_property_master"
+        action="estate_action"
+        sequence="0"   
+    />
+</odoo>
