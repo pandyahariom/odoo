@@ -52,6 +52,7 @@
                     <notebook>
                         <page string="Page1" name="page1">
                             <group>
+                                <field name="html_field_demo" placeholder="Enter Your Text Here. Use / to use html tags"/>
                                 <field name="birth_date"/>
                                 <field name="age"/>
                             </group>

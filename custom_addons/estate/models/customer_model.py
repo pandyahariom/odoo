@@ -12,6 +12,8 @@ class Customer(models.Model):
     #we can add _rec_name to add any field value in breadcrumb
     _rec_name='customer_id' 
 
+    html_field_demo=fields.Html(string="HTML Text Field")
+    
     gender=fields.Selection([('male','Male'),('female','Female')],string="Gender",related="customer_id.gender")
     appointment_time=fields.Datetime(string="Appointment Time",default=fields.Datetime.now)
     birth_date=fields.Date(string="Birth Date",default=fields.Date.today)
