@@ -9,7 +9,8 @@
                 <field name="customer_id"/>
                 <field name="gender"/>
                 <field name="appointment_time"/>
-                <field name="appointment_date"/>
+                <field name="birth_date"/>
+                <field name="age"/>
             </search>
         </field>
     </record>
@@ -23,7 +24,8 @@
                 <field name="customer_id"/>
                 <field name="gender"/>
                 <field name="appointment_time"/>
-                <field name="appointment_date"/>
+                <field name="birth_date"/>
+                <field name="age"/>
             </tree>
         </field>
     </record>
@@ -38,7 +40,8 @@
                     <group>
                         <field name="customer_id"/>
                         <field name="gender"/>
-                        <field name="appointment_date"/>
+                        <field name="birth_date"/>
+                        <field name="age"/>
                     </group>
                     <group>
                         <field name="appointment_time"/>
