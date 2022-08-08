@@ -6,7 +6,10 @@
         <field name="model">customer.details</field>
         <field name="arch" type="xml">
             <search>
-               
+                <field name="customer_id"/>
+                <field name="gender"/>
+                <field name="appointment_time"/>
+                <field name="appointment_date"/>
             </search>
         </field>
     </record>
@@ -17,7 +20,10 @@
         <field name="model">customer.details</field>
         <field name="arch" type="xml">
             <tree>
-                
+                <field name="customer_id"/>
+                <field name="gender"/>
+                <field name="appointment_time"/>
+                <field name="appointment_date"/>
             </tree>
         </field>
     </record>
@@ -31,6 +37,11 @@
                 <sheet>
                     <group>
                         <field name="customer_id"/>
+                        <field name="gender"/>
+                        <field name="appointment_date"/>
+                    </group>
+                    <group>
+                        <field name="appointment_time"/>
                     </group>
                 </sheet>
                 <!-- Chatter -->
@@ -61,5 +72,5 @@
     </record>
 
     <!-- Menu Item with action -->
-    <menuitem id="menu_customer_details" name="Customer Details" parent="menu_property_master" action="customer_action" sequence="1" />
+    <menuitem id="menu_customer_details" name="Customer Details" parent="menu_estate_root" action="customer_action" sequence="1" />
 </odoo>
