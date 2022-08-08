@@ -49,6 +49,20 @@
                         <field name="appointment_time"/>
                         <field name="name2"/>
                     </group>
+                    <notebook>
+                        <page string="Page1" name="page1">
+                            <group>
+                                <field name="birth_date"/>
+                                <field name="age"/>
+                            </group>
+                        </page>
+                        <page string="Page2" name="page2">
+                            <group>
+                                <field name="appointment_time"/>
+                                <field name="name2"/>
+                            </group>
+                        </page>
+                    </notebook>
                 </sheet>
                 <!-- Chatter -->
                 <div class="oe_chatter">

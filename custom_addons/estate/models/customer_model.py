@@ -7,6 +7,11 @@ class Customer(models.Model):
     _inherit='mail.thread','mail.activity.mixin'
     _description="Model to demonstrate Many2one concept"
     customer_id=fields.Many2one(comodel_name="estate.property", string="Customer Name")
+
+    #in the breadcrumb bydefault model name and ID will be displayed if the field with name as "name" is missing
+    #we can add _rec_name to add any field value in breadcrumb
+    _rec_name='customer_id' 
+
     gender=fields.Selection([('male','Male'),('female','Female')],string="Gender",related="customer_id.gender")
     appointment_time=fields.Datetime(string="Appointment Time",default=fields.Datetime.now)
     birth_date=fields.Date(string="Birth Date",default=fields.Date.today)
