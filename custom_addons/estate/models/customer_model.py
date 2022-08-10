@@ -40,6 +40,6 @@ class Customer(models.Model):
                 #print("Brithdate:",birthday)
             #print("ANS:",today.year - record.birth_date.year)
             if birthday > today:
-                self.age= today.year - record.birth_date.year - 1
+                record.age= today.year - record.birth_date.year - 1
             else:
-                self.age= today.year - record.birth_date.year
+                record.age= today.year - record.birth_date.year
