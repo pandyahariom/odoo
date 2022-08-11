@@ -1,0 +1,11 @@
+<odoo>
+ 
+  <!-- First Level menu categories -->
+
+  <menuitem name="Settings" id="realestate.settings" parent="realestate.menu_root"/>
+
+ <!-- Action menu categories -->
+  
+  <menuitem name="Property Type" id="realestate.categories" parent="realestate.settings" action="realestate.action_property_type_window" />
+  
+</odoo>

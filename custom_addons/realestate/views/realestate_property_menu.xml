@@ -1,0 +1,15 @@
+
+<odoo>
+ 
+  <!-- Top menu item -->
+  <menuitem name="RealEstate" id="realestate.menu_root" web_icon="realestate,static/description/realEstate.png"/>
+
+  <!-- First Level menu categories -->
+
+  <menuitem name="Advertisements" id="realestate.advertisements" parent="realestate.menu_root"/>
+
+ <!-- Action menu categories -->
+  
+  <menuitem name="Properties" id="realestate.properties" parent="realestate.advertisements" action="realestate.action_window"/>
+  
+</odoo>

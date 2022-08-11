@@ -1,28 +1,111 @@
 <odoo>
      <!-- explicit list view definition -->
-<!--
+
     <record model="ir.ui.view" id="realestate.list">
-      <field name="name">realestate list</field>
-      <field name="model">realestate.realestate</field>
+      <field name="name">Properties</field>
+      <field name="model">realestate.property</field>
       <field name="arch" type="xml">
-        <tree>
+        <tree string="Properties">
           <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
+          <field name="property_type_id"/>
+          <field name="postcode"/>
+          <field name="bedrooms"/>
+          <field name="living_area" string="Living Area(sqm)"/>
+          <field name="expected_price"/>
+          <field name="selling_price" />
+          <field name="date_availability"/>
+          <field name="buyer_id"/>
+          <field name="salesman_id"/>
         </tree>
       </field>
     </record>
--->
+
+     <!-- explicit form view definition -->
+
+     <record model="ir.ui.view" id="realestate.form">
+      <field name="name">FormProperties</field>
+      <field name="model">realestate.property</field>
+      <field name="arch" type="xml">
+        <form string="Properties">
+          <sheet>
+            <group>
+                <field name="name" string="Property Name"/>
+            </group>
+            <group col="4">
+              <field name="property_type_id"/>
+              <field name="expected_price"/>
+            </group>
+            <group col="4">
+              <field name="postcode"/>
+              <field name="selling_price" />    
+            </group>
+            <group>
+              <field name="date_availability"/>
+            </group>
+          <notebook>
+            <page string="Description">
+              <group>
+                <field name="description"/>
+                <field name="bedrooms"/>
+                <field name="living_area" string="Living Area(sqm)"/>
+                <field name="facades"/>
+                <field name="garage"/>
+                <field name="garden"/>
+                <field name="garden_area"/>
+                <field name="garden_orientation"/>
+              </group>
+            </page>
+            <page string="Other Info">
+              <group>
+                <field name="buyer_id" string="Buyer"/>
+                <field name="salesman_id" string="SalesPerson"/>
+              </group>
+              
+            </page>
+          </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+     <!-- explicit Search view definition -->
+
+     <record model="ir.ui.view" id="realestate.search">
+      <field name="name">Properties</field>
+      <field name="model">realestate.property</field>
+      <field name="arch" type="xml">
+        <search string="Properties">
+          <field name="name"/>
+          <field name="postcode"/>
+          <field name="expected_price"/>
+          <field name="bedrooms"/>
+          <field name="living_area" string="Living Area(sqm)"/>
+          <field name="facades"/>
+          <field name="property_type_id"/>
+          <field name="buyer_id"/>
+          <field name="salesman_id"/>
+          <separator/>
+          <filter string="Available" name="available" domain="['|',('state', '=', 'new'),('state', '=', 'or')]"/>
+          <filter string="2Bed" name="2bed" domain="[('bedrooms', '=', '2')]"/>
+          <separator />
+          <group expand="1" string="Group By">
+            <filter string="Postcode" name="group_by_postcode" context="{'group_by':'postcode'}" />
+        </group>
+        
+        </search>
+      </field>
+    </record>
+
 
     <!-- actions opening views on models -->
 
     <record model="ir.actions.act_window" id="realestate.action_window">
-      <field name="name">realestate window</field>
+      <field name="name">Properties</field>
       <field name="res_model">realestate.property</field>
       <field name="view_mode">tree,form</field>
     </record>
 
-
+    
     <!-- server action to the one above -->
 <!--
     <record model="ir.actions.server" id="realestate.action_server">

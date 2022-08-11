@@ -25,7 +25,10 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'views/views.xml',
+        'views/realestate_property_views.xml',
+        'views/realestate_property_type_views.xml',
+        'views/realestate_property_menu.xml',
+        'views/realestate_property_type_menu.xml',
         'views/templates.xml',
     ],
     # only loaded in demonstration mode

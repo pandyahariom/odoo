@@ -1,28 +1,43 @@
 <odoo>
-  <data>
-    <!-- explicit list view definition -->
-<!--
-    <record model="ir.ui.view" id="realestate.list">
-      <field name="name">realestate list</field>
-      <field name="model">realestate.realestate</field>
+     <!-- explicit list view definition -->
+     <record model="ir.ui.view" id="realestate.property_type_list">
+      <field name="name">Property Type</field>
+      <field name="model">realestate.property.type</field>
       <field name="arch" type="xml">
-        <tree>
+        <tree >
           <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
         </tree>
       </field>
-    </record>
--->
+      </record>
+
+     <!-- explicit form view definition -->
+     <record model="ir.ui.view" id="realestate.property_type_form">
+      <field name="name">Property Type</field>
+      <field name="model">realestate.property.type</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+          <div>
+            <h1>
+              <field name="name"/>
+            </h1>
+          </div>
+          </sheet>
+        </form>
+      </field>
+      </record>
+     <!-- explicit Search view definition -->
+
+
 
     <!-- actions opening views on models -->
-<!--
-    <record model="ir.actions.act_window" id="realestate.action_window">
-      <field name="name">realestate window</field>
-      <field name="res_model">realestate.realestate</field>
+
+    <record model="ir.actions.act_window" id="realestate.action_property_type_window">
+      <field name="name">Property Type</field>
+      <field name="res_model">realestate.property.type</field>
       <field name="view_mode">tree,form</field>
     </record>
--->
+
 
     <!-- server action to the one above -->
 <!--
@@ -40,15 +55,6 @@
     </record>
 -->
 
-    <!-- Top menu item -->
-<!--
-    <menuitem name="realestate" id="realestate.menu_root"/>
--->
-    <!-- menu categories -->
-<!--
-    <menuitem name="Menu 1" id="realestate.menu_1" parent="realestate.menu_root"/>
-    <menuitem name="Menu 2" id="realestate.menu_2" parent="realestate.menu_root"/>
--->
     <!-- actions -->
 <!--
     <menuitem name="List" id="realestate.menu_1_list" parent="realestate.menu_1"
@@ -56,5 +62,5 @@
     <menuitem name="Server to list" id="realestate" parent="realestate.menu_2"
               action="realestate.action_server"/>
 -->
-  </data>
+  
 </odoo>
