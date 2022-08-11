@@ -1,4 +1,4 @@
-from odoo import models,fields,api
+from odoo import models,fields,api,_
 from dateutil.relativedelta import relativedelta
 import time
 class realestate(models.Model):
@@ -16,9 +16,40 @@ class realestate(models.Model):
     garage=fields.Boolean(string="Has Garage?")
     garden=fields.Boolean(string="Has Garden?")
     garden_area=fields.Integer(string="Garden Area")
-    garden_orientation=fields.Selection(selection=[("north","North"),("east","East"),("west","West"),("south","South")],string="Garden Orientatin",help="Select Garden Orientation",default='north')
+    garden_orientation=fields.Selection(selection=[("north","North"),("east","East"),("west","West"),("south","South")],string="Garden Orientatin",help="Select Garden Orientation")
     active=fields.Boolean(default=True)
     state=fields.Selection(selection=[("new","New"),("or","Offer Received"),("oa","Offer Accepted"),("sold","Sold"),("canceled","Canceled")],required=True,copy=False,default='new')
-    property_type_id=fields.Many2one(comodel_name="realestate.property.type",string="Property Type")
-    salesman_id=fields.Many2one('res.users', string='Salesperson', index=True, tracking=True, default=lambda self: self.env.user)
-    buyer_id=fields.Many2one('res.partner', string='Buyer', index=True, tracking=True, copy=False)
+
+    property_type_id=fields.Many2one(comodel_name="realestate.property.type",string="Property Type", required=True)
+    salesman_id=fields.Many2one('res.users', string='Salesperson',  default=lambda self: self.env.user)
+    buyer_id=fields.Many2one('res.partner', string='Buyer', index=True, copy=False)
+    tag_ids=fields.Many2many('realestate.property.tag',string="Property Tag",required=True)
+    offer_ids=fields.One2many('realestate.property.offer',inverse_name="property_id",string="Offers")
+
+    total_area=fields.Integer(compute="_compute_total_area",string="Total Area",readonly=True)
+    best_price=fields.Float(compute="_compute_best_price",string="Best Offer",readonly=True)
+
+    @api.depends("garden_area","living_area")
+    def _compute_total_area(self):
+        for record in self:
+            record.total_area=record.garden_area+record.living_area
+
+    @api.depends("offer_ids.price")
+    def _compute_best_price(self):
+        for record in self:
+            record.best_price=0.0
+            for offer in self.offer_ids:
+                if(offer.price>record.best_price):
+                    record.best_price=offer.price
+
+    @api.onchange("garden")
+    def _onchange_garden(self):
+        if(self.garden):
+            self.garden_area=10
+            self.garden_orientation="north"
+        else:
+            self.garden_area=0
+            self.garden_orientation=""
+            return {'warning': {
+                'title': _("Warning"),
+                'message': ('Really !!! No Garden ??')}}

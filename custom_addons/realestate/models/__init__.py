@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import realestate_property,realestate_property_type
+from . import realestate_property,realestate_property_type,realestate_property_tag,realestate_property_offer

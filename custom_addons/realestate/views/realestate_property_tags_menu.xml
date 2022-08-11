@@ -1,0 +1,8 @@
+<odoo>
+ 
+
+ <!-- Action menu categories -->
+  
+  <menuitem name="Property Tags" id="realestate.tags" parent="realestate.settings" action="realestate.action_property_tag_window" />
+  
+</odoo>

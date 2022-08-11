@@ -27,8 +27,11 @@
         'security/ir.model.access.csv',
         'views/realestate_property_views.xml',
         'views/realestate_property_type_views.xml',
+        'views/realestate_property_tags_views.xml',
+        'views/realestate_property_offers_views.xml',
         'views/realestate_property_menu.xml',
         'views/realestate_property_type_menu.xml',
+        'views/realestate_property_tags_menu.xml',
         'views/templates.xml',
     ],
     # only loaded in demonstration mode

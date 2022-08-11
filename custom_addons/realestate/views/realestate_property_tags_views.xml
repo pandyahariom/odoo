@@ -1,0 +1,68 @@
+<odoo>
+     <!-- explicit list view definition -->
+     <record model="ir.ui.view" id="realestate.property_tag_list">
+      <field name="name">Property Tags</field>
+      <field name="model">realestate.property.tag</field>
+      <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+        </tree>
+      </field>
+      </record>
+
+     <!-- explicit form view definition -->
+     <record model="ir.ui.view" id="realestate.property_tag_form">
+      <field name="name">Property Tags</field>
+      <field name="model">realestate.property.tag</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+          <div>
+            <h1>
+              <field name="name" string="Property Tag"/>
+            </h1>
+          </div>
+        </group>
+          </sheet>
+        </form>
+      </field>
+      </record>
+     <!-- explicit Search view definition -->
+
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="realestate.action_property_tag_window">
+      <field name="name">Property Tags</field>
+      <field name="res_model">realestate.property.tag</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="realestate.action_server">
+      <field name="name">realestate server</field>
+      <field name="model_id" ref="model_realestate_realestate"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="realestate.menu_1_list" parent="realestate.menu_1"
+              action="realestate.action_window"/>
+    <menuitem name="Server to list" id="realestate" parent="realestate.menu_2"
+              action="realestate.action_server"/>
+-->
+  
+</odoo>

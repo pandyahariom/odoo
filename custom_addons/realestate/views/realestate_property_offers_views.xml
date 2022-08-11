@@ -1,0 +1,39 @@
+<odoo>
+     <!-- explicit list view definition -->
+     <record model="ir.ui.view" id="realestate.property_offer_list">
+      <field name="name">Property Offers</field>
+      <field name="model">realestate.property.offer</field>
+      <field name="arch" type="xml">
+        <tree>
+            <field name="price"/>
+            <field name="partner_id"/>
+            <field name="validity"/>
+            <field name="date_deadline"/>
+            <field name="status"/>
+        </tree>
+      </field>
+      </record>
+
+     <!-- explicit form view definition -->
+     <record model="ir.ui.view" id="realestate.property_offer_form">
+      <field name="name">Property Offers</field>
+      <field name="model">realestate.property.offer</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group col='6'>
+              <field name="price"/>
+              <field name="partner_id"/>
+              <field name="validity"/>
+              <field name="date_deadline"/>
+              <field name="status"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+      </record>
+     <!-- explicit Search view definition -->
+
+
+
+</odoo>
