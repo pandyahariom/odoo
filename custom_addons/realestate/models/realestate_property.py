@@ -1,6 +1,8 @@
 from odoo import models,fields,api,_
 from dateutil.relativedelta import relativedelta
 import time
+from odoo.exceptions import UserError
+
 class realestate(models.Model):
     _name="realestate.property"
     _description="First Real Estate Model"
@@ -53,3 +55,26 @@ class realestate(models.Model):
             return {'warning': {
                 'title': _("Warning"),
                 'message': ('Really !!! No Garden ??')}}
+    
+    def action_sold(self):
+        #("new","New"),("or","Offer Received"),("oa","Offer Accepted"),("sold","Sold"),("canceled","Canceled"
+        for record in self:
+            if(record.state=="canceled"):
+                raise UserError(_('Canceled Property can not be Sold !!'))
+            else:
+                record.state="sold"
+        return True
+    def action_cancel(self):
+        for record in self:
+            if(record.state=="sold"):
+                raise UserError(_('Sold Property can not be Cancelled !!'))
+            else:
+                record.state="canceled"
+        return True
+    
+    _sql_constraints = [
+        ('check_expected_price', 'CHECK(expected_price > 0 )',
+         'The Expected Price must be strictly positive'),
+         ('check_selling_price', 'CHECK(selling_price >= 0 )',
+         'The Selling Price must be positive')
+    ]

@@ -30,3 +30,20 @@ class realestate_property_offer(models.Model):
             #difference between two date object will give timedelta. We can extract total days from it using .days
             record.validity=abs((record.date_deadline-create).days)
         
+    def action_accept(self):
+        for record in self:
+            record.status="accepted"
+            record.property_id.selling_price=record.price
+            record.property_id.buyer_id=record.partner_id
+          
+        return True
+    def action_reject(self):
+        for record in self:
+            record.status="refused"
+        return True
+    
+    
+    _sql_constraints = [
+        ('check_offer_price', 'CHECK(price > 0 )',
+         'The Offer Price must be strictly positive'),
+    ]
