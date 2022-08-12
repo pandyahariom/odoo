@@ -6,6 +6,7 @@ from odoo.tools.float_utils import float_compare,float_is_zero
 class realestate_property_offer(models.Model):
     _name="realestate.property.offer"
     _description="Real Estate Property Offers"
+    _order="price desc"
     price=fields.Float(string="Offer Price")
     status=fields.Selection(selection=[('accepted',"Accepted"),('refused',"Refused")],copy=False)
     partner_id=fields.Many2one(comodel_name='res.partner',required=True)

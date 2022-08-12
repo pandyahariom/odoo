@@ -4,7 +4,8 @@
       <field name="name">Property Tags</field>
       <field name="model">realestate.property.tag</field>
       <field name="arch" type="xml">
-        <tree>
+        <tree editable="top">
+            <field name="sequence" widget="handle" />
             <field name="name"/>
         </tree>
       </field>
