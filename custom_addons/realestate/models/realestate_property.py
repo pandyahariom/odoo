@@ -25,7 +25,7 @@ class realestate(models.Model):
 
     property_type_id=fields.Many2one(comodel_name="realestate.property.type",string="Property Type", required=True,no_create=True)
     salesman_id=fields.Many2one('res.users', string='Salesperson',  default=lambda self: self.env.user)
-    buyer_id=fields.Many2one('res.partner', string='Buyer', index=True, copy=False)
+    buyer_id=fields.Many2one('res.partner', string='Buyer', copy=False)
     tag_ids=fields.Many2many('realestate.property.tag',string="Property Tag",required=True)
     offer_ids=fields.One2many('realestate.property.offer',inverse_name="property_id",string="Offers")
 
@@ -79,3 +79,8 @@ class realestate(models.Model):
          ('check_selling_price', 'CHECK(selling_price >= 0 )',
          'The Selling Price must be positive')
     ]
+
+    def unlink(self):
+        if not set(self.mapped("state")) <= {"new", "canceled"}:
+            raise UserError("Only new and canceled properties can be deleted.")
+        return super().unlink()

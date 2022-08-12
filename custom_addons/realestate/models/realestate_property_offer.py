@@ -1,7 +1,7 @@
 from odoo import models,fields,api,_
 from dateutil.relativedelta import relativedelta
 from datetime import datetime
-from odoo.exceptions import ValidationError 
+from odoo.exceptions import ValidationError,UserError
 from odoo.tools.float_utils import float_compare,float_is_zero
 class realestate_property_offer(models.Model):
     _name="realestate.property.offer"
@@ -60,3 +60,15 @@ class realestate_property_offer(models.Model):
                 if(ans<1):
                     raise ValidationError(_('Selling price (%.2f) cannot be lower than 90 percent of the expected price(%.2f)')%(record.price,value2))
               
+
+    @api.model
+    def create(self, vals):
+        if vals.get("property_id") and vals.get("price"):
+            prop = self.env["realestate.property"].browse(vals["property_id"])
+            # Check if the offer is higher than all existing offers
+            if prop.offer_ids:
+                max_offer = max(prop.mapped("offer_ids.price"))
+                if float_compare(vals["price"], max_offer, precision_rounding=0.01) <= 0:
+                    raise UserError("The offer must be higher than %.2f" % max_offer)
+            prop.state = "or"
+        return super().create(vals)
