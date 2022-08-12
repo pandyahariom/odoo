@@ -1,6 +1,8 @@
-from odoo import models,fields,api
+from odoo import models,fields,api,_
 from dateutil.relativedelta import relativedelta
 from datetime import datetime
+from odoo.exceptions import ValidationError 
+from odoo.tools.float_utils import float_compare,float_is_zero
 class realestate_property_offer(models.Model):
     _name="realestate.property.offer"
     _description="Real Estate Property Offers"
@@ -47,3 +49,13 @@ class realestate_property_offer(models.Model):
         ('check_offer_price', 'CHECK(price > 0 )',
          'The Offer Price must be strictly positive'),
     ]
+
+    @api.constrains("price","property_id.expected_price")
+    def _check_price_difference(self):
+        for record in self:
+            if(not float_is_zero(record.price,precision_digits=2)):
+                value2=record.property_id.expected_price*0.9
+                ans=float_compare(record.price,value2,precision_digits=2)
+                if(ans<1):
+                    raise ValidationError(_('Selling price (%.2f) cannot be lower than 90 percent of the expected price(%.2f)')%(record.price,value2))
+              
