@@ -2,7 +2,7 @@
 <odoo>
  
   <!-- Top menu item -->
-  <menuitem name="RealEstate" id="realestate.menu_root" web_icon="realestate,static/description/realEstate.png"/>
+  <menuitem name="RealEstate" id="realestate.menu_root" web_icon="realestate,static/description/icon.png"/>
 
   <!-- First Level menu categories -->
 
