@@ -65,6 +65,7 @@ class realestate(models.Model):
             else:
                 record.state="sold"
         return True
+        
     def action_cancel(self):
         for record in self:
             if(record.state=="sold"):
