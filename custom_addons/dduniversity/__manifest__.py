@@ -3,10 +3,10 @@
     'name': "dduniversity",
 
     'summary': """
-        Odoo Module for Dharmsinh Desai University (D.D. University)""",
+        Odoo Module for Dharmsinh Desai University (D.D. University) Management Quota Admission""",
 
     'description': """
-        Module to support various administrative task of the D.D.University
+        Module to support various administrative task of the D.D.University admission
     """,
 
     'author': "Hariom Pandya",
@@ -18,7 +18,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base','crm'],
 
     # always loaded
     'data': [

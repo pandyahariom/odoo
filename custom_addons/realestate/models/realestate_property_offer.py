@@ -11,7 +11,7 @@ class realestate_property_offer(models.Model):
     status=fields.Selection(selection=[('accepted',"Accepted"),('refused',"Refused")],copy=False)
     partner_id=fields.Many2one(comodel_name='res.partner',required=True)
     property_id=fields.Many2one(comodel_name='realestate.property',required=True)
-
+    disable_button=fields.Boolean(default=False)
     validity=fields.Integer(string="Validity(days)",default=7)
     date_deadline=fields.Date(string="Deadline",compute="_compute_deadline",inverse="_inverse_deadline")
 
@@ -39,11 +39,24 @@ class realestate_property_offer(models.Model):
             record.property_id.state="oa"
             record.property_id.selling_price=record.price
             record.property_id.buyer_id=record.partner_id
+        #Disable accept and reject buttons for all records
+        record_set=self.env['realestate.property.offer'].search([])
+        for record in record_set:
+            if record.id != self.id:
+                record.disable_button=True
         return True
         
     def action_reject(self):
         for record in self:
             record.status="refused"
+            record.property_id.state="or"
+            record.property_id.selling_price=False
+            record.property_id.buyer_id=False
+        record_set=self.env['realestate.property.offer'].search([])
+        for record in record_set:
+                record.disable_button=False
+                #if record.id != self.id:
+                #    record.status=False
         return True
     
     
