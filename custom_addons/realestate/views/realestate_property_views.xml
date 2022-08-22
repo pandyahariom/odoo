@@ -5,7 +5,7 @@
       <field name="name">Properties</field>
       <field name="model">realestate.property</field>
       <field name="arch" type="xml">
-        <tree string="Properties" decoration-muted="state=='sold'" >
+        <tree string="Properties" decoration-success="state=='sold'" decoration-danger="state=='canceled'" decoration-bf="state=='new'" decoration-primary="state=='oa'">
           <field name="name"/>
           <field name="state"/>
           <field name="property_type_id"/>

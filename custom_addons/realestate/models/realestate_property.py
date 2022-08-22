@@ -53,9 +53,9 @@ class realestate(models.Model):
         else:
             self.garden_area=0
             self.garden_orientation=""
-            return {'warning': {
-                'title': _("Warning"),
-                'message': ('Really !!! No Garden ??')}}
+            #return {'warning': {
+            #    'title': _("Warning"),
+            #    'message': ('Really !!! No Garden ??')}}
     
     def action_sold(self):
         #("new","New"),("or","Offer Received"),("oa","Offer Accepted"),("sold","Sold"),("canceled","Canceled"
