@@ -62,6 +62,8 @@ class realestate(models.Model):
         for record in self:
             if(record.state=="canceled"):
                 raise UserError(_('Canceled Property can not be Sold !!'))
+            elif(record.state != "oa"):
+                raise UserError(_('Without Accepting offer the property can not be Sold !!'))    
             else:
                 record.state="sold"
         return True

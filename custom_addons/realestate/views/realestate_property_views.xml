@@ -31,9 +31,9 @@
       <field name="arch" type="xml">
         <form string="Properties">
           <header>
-            <button name="action_sold" type="object" string="SOLD" states="new,or,oa"/>
-            <button name="action_cancel" type="object" string="CANCEL"/>
-            <field name="state" widget="statusbar" statusbar_visible="new,or,oa,sold,canceled"/>
+            <button name="action_sold" type="object" string="SOLD" states="new,or,oa" attrs="{'invisible': ['|',('state', '=', 'sold') ,('state', '=', 'canceled')]}" />
+            <button name="action_cancel" type="object" string="CANCEL" attrs="{'invisible': ['|',('state', '=', 'sold') ,('state', '=', 'canceled')]}"/>
+            <field name="state" widget="statusbar" statusbar_visible="new,or,oa,sold"/>
           </header>
           <sheet>
             <group col="4">
