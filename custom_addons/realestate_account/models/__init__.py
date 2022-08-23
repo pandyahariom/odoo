@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import models,realestate_property
+from . import realestate_property

@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-from custom_addons.realestate.models.realestate_property import realestate
-
-
 {
     'name': "realestate_account",
 
@@ -15,7 +12,6 @@ from custom_addons.realestate.models.realestate_property import realestate
 
     'author': "My Company",
     'website': "http://www.yourcompany.com",
-    'sequence':-590,
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
@@ -24,7 +20,7 @@ from custom_addons.realestate.models.realestate_property import realestate
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','account','realestate'],
+    'depends': ['base'],
 
     # always loaded
     'data': [
@@ -32,17 +28,8 @@ from custom_addons.realestate.models.realestate_property import realestate
         'views/views.xml',
         'views/templates.xml',
     ],
-    'depends':[
-        'realestate',
-        'account',
-
-    ],
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
     ],
-    'installable': True,
-    'application': True,
-    'license':'LGPL-3'
-
 }
