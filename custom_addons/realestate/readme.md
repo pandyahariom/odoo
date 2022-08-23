@@ -23,7 +23,7 @@ The Real Estate odoo app supports following functionalities for Property Dealer 
 - Once any offer is accepted, the "accept" button is disabled from all the offers and the "reject" button available for the current accepted offer.
 - On acceptance of any offer the state of property is updated to "Offer Accepted".
 - If user click on the "reject" button on currently accepted offer, "accept" and "reject" buttons will be re-eanbled for all the offers and property state is reseted to offer received.
-<img src="https://github.com/pandyahariom/odoo/blob/15.0/custom_addons/realestate/static/offer.png">
+<img src="https://github.com/pandyahariom/odoo/blob/15.0/custom_addons/realestate/static/Offers.png">
 
 - Once user click on the sold button the property state is marked as "Sold". 
 - On clicking on cancle button the property state is marked as "Canceled".
