@@ -25,6 +25,7 @@ The Real Estate odoo app supports following functionalities for Property Dealer 
 
 - Once user click on the sold button the property state is marked as "Sold". 
 - On clicking on cancle button the property state is marked as "Canceled".
+- Additional Features : Custom filters, Groups, Search view, constraints, relational fields, auto update of buyers, tags and property type management.
 
 
 
