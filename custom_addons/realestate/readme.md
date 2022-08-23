@@ -4,24 +4,9 @@
 |---|
 | 15.0 |
 
-## Installation
-
-type in console:
-
-```shel
-composer require edujugon/laradoo
-```
-
-Register Laradoo service by adding it to the providers array.
-```python
-'providers' => array(
-        ...
-        Edujugon\Laradoo\Providers\OdooServiceProvider::class
-    )
-```
 
 ## Features
-The Real Estate odoo app supports following functionalities for property dealer :
+The Real Estate odoo app supports following functionalities for Property Dealer :
 
 - All available properties are available as a list view (tree view) of Real Estate.
   <img src="https://github.com/pandyahariom/odoo/blob/15.0/custom_addons/realestate/static/HomePage.png">
