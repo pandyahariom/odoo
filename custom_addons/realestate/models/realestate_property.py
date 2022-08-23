@@ -23,7 +23,7 @@ class realestate(models.Model):
     active=fields.Boolean(default=True)
     state=fields.Selection(selection=[("new","New"),("or","Offer Received"),("oa","Offer Accepted"),("sold","Sold"),("canceled","Canceled")],required=True,copy=False,default='new')
 
-    property_type_id=fields.Many2one(comodel_name="realestate.property.type",string="Property Type", required=True,no_create=True)
+    property_type_id=fields.Many2one(comodel_name="realestate.property.type",string="Property Type", required=True)
     salesman_id=fields.Many2one('res.users', string='Salesperson',  default=lambda self: self.env.user)
     buyer_id=fields.Many2one('res.partner', string='Buyer', copy=False)
     tag_ids=fields.Many2many('realestate.property.tag',string="Property Tag",required=True)

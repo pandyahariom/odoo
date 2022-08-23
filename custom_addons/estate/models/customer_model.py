@@ -14,7 +14,7 @@ class Customer(models.Model):
 
     html_field_demo=fields.Html(string="HTML Text Field")
     
-    gender=fields.Selection([('male','Male'),('female','Female')],string="Gender",related="customer_id.gender")
+    gender=fields.Selection(string="Gender",related="customer_id.gender")
     appointment_time=fields.Datetime(string="Appointment Time",default=fields.Datetime.now)
     birth_date=fields.Date(string="Birth Date",default=fields.Date.today)
     age=fields.Integer(string="Age",compute="_compute_age") #Demo of depends

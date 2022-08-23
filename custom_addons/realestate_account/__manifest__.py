@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+from custom_addons.realestate.models.realestate_property import realestate
+
+
 {
     'name': "realestate_account",
 
@@ -21,7 +24,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base','account','realestate'],
 
     # always loaded
     'data': [
