@@ -26,14 +26,19 @@ The Real Estate odoo app supports following functionalities for Property Dealer 
 <img src="https://github.com/pandyahariom/odoo/blob/15.0/custom_addons/realestate/static/Offers.png?">
 
 - Once user click on the sold button the property state is marked as "Sold". 
-- On clicking on cancle button the property state is marked as "Canceled".
+- Buttons of "Cancel" and "Sold" will be disabled on sold.
+<img src="https://github.com/pandyahariom/odoo/blob/15.0/custom_addons/realestate/static/sold.png?">
+
+
 - Additional Features : Custom filters, Groups, Search view, constraints, relational fields, auto update of buyers, tags and property type management.
 
 ## View Inheritance
+- Linking Properties associated with perticular saleseman in his/her user profile.
+[setting -> Users & Company -> Users : In the form view properties are added as a last notebook Page]  
+<img src="https://github.com/pandyahariom/odoo/blob/15.0/custom_addons/realestate/static/UserLinking.png?">
 
 ## Features : Bridge module between RealEstate and Account Modules
 - Once a property marked as "sold" the invoice is created for property with line 1) 60% of selling price and 2) 100.0 administrative charge
 <img src="https://github.com/pandyahariom/odoo/blob/15.0/custom_addons/realestate/static/InvoicePage.png">
-
 
 

@@ -33,12 +33,8 @@
         'views/realestate_property_type_menu.xml',
         'views/realestate_property_tags_menu.xml',
         'views/res_users_views.xml',
-        'views/templates.xml',
     ],
-    # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
+   
     'installable': True,
     'application': True,
     'license':'LGPL-3'
