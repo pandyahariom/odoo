@@ -29,7 +29,7 @@ The Real Estate odoo app supports following functionalities for Property Dealer 
 - Buttons of "Cancel" and "Sold" will be disabled on sold.
 <img src="https://github.com/pandyahariom/odoo/blob/15.0/custom_addons/realestate/static/sold.png?">
 
-- Additional Features : Custom filters, Groups, Search view, constraints, relational fields, auto update of buyers, tags and property type management.
+- Additional Features : Custom filters, Groups, Search view, constraints, relational fields, auto update of sales person, tags and property type management.
 
 ## View Inheritance
 - Linking Properties with perticular saleseman in his/her user profile.
