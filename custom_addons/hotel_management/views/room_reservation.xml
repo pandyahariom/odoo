@@ -113,16 +113,4 @@
             </form>
         </field>
     </record>
-    <menuitem id="hotel_management_root"
-              name="Hotel Management"
-              sequence="10"/>
-    <menuitem id="Reservation_root"
-              name="Reservation"
-              parent="hotel_management_root"
-              sequence="1"/>
-    <menuitem id="reservation"
-              name="Rooms"
-              parent="Reservation_root"
-              action="view_reservation"
-              sequence="10"/>
 </odoo>

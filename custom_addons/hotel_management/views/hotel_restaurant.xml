@@ -36,18 +36,5 @@
             </form>
         </field>
     </record>
-    <menuitem id="restaurant_root"
-              name="Restaurant"
-              parent="hotel_management_root"
-              sequence="2"/>
-    <menuitem id="meals_root"
-              name="Meals"
-              parent="restaurant_root"
-              action="view_hotel_meals"
-              sequence="9"/>
-    <menuitem id="meal_types_root"
-              name="Meal Types"
-              parent="restaurant_root"
-              action="view_meal_types"
-              sequence="10"/>
+    
 </odoo>

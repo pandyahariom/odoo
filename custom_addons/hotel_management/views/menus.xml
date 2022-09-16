@@ -1,13 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
+    <!-- Root Menu -->
+    <menuitem id="hotel_management_root"
+        name="Hotel Management"
+        sequence="10" 
+        web_icon="hotel_management,static/description/icon.png"/>
+
+    <!-- Main Menu :Reservation, Restaurant and Configuration -->
+    <menuitem id="Reservation_root"
+        name="Reservation"
+        parent="hotel_management_root"
+        sequence="1"/>
+    <menuitem id="restaurant_root"
+        name="Restaurant"
+        parent="hotel_management_root"
+        sequence="2"/>
     <menuitem id="res_settings_root"
-              name="Configuration"
-              parent="hotel_management_root"
-              sequence="10"/>
+        name="Configuration"
+        parent="hotel_management_root"
+        sequence="3"/>
+
+    <!-- Reservation Sub Menus-->
+    <menuitem id="reservation"
+        name="Rooms"
+        parent="Reservation_root"
+        action="view_reservation"
+        sequence="10"/>
+    <menuitem id="checkin_root"
+        name="Check-In"
+        parent="Reservation_root"
+        action="view_checkin"
+        sequence="11"/>
+    <menuitem id="checkout_root"
+        name="Check-Out"
+        parent="Reservation_root"
+        action="view_checkout"
+        sequence="12"/>
+
+    <!-- Restaurant Sub Menus-->
+    <menuitem id="meals_root"
+        name="Meals"
+        parent="restaurant_root"
+        action="view_hotel_meals"
+        sequence="9"/>
+    <menuitem id="meal_types_root"
+        name="Meal Types"
+        parent="restaurant_root"
+        action="view_meal_types"
+        sequence="10"/>
+
+    
+    <!-- Configuration Sub Menus-->
+
+    <!-- Configuration Sub Menu :Room-->
     <menuitem id="room_root"
               name="Room"
               parent="res_settings_root"
               sequence="1"/>
+
     <menuitem id="room"
               name="Rooms"
               parent="room_root"
@@ -18,10 +69,14 @@
               parent="room_root"
               action="view_room_types"
               sequence="10"/>
+    
+
+    <!-- Configuration Sub Menu :Amenities-->
     <menuitem id="amenity_root"
               name="Amenities"
               parent="res_settings_root"
               sequence="2"/>
+
     <menuitem id="amenity_amenity"
               name="Amenities"
               parent="amenity_root"
@@ -32,10 +87,13 @@
               parent="amenity_root"
               action="view_amenity_types"
               sequence="10"/>
+    
+    <!-- Configuration Sub Menu :Services-->
     <menuitem id="service_root"
               name="Services"
               parent="res_settings_root"
               sequence="3"/>
+    
     <menuitem id="hotel_service"
               name="Service"
               parent="service_root"
@@ -46,23 +104,16 @@
               parent="service_root"
               action="view_service_categories"
               sequence="10"/>
+    
+    <!-- Configuration Sub Menu :Floor-->
     <menuitem id="floor_root"
               name="Floor"
               parent="res_settings_root"
               sequence="7"/>
+    
     <menuitem id="hotel_floor"
               name="Floor"
               parent="floor_root"
               action="view_hotel_floor"
               sequence="10"/>
-    <menuitem id="checkin_root"
-              name="Check-In"
-              parent="Reservation_root"
-              action="view_checkin"
-              sequence="11"/>
-    <menuitem id="checkout_root"
-              name="Check-Out"
-              parent="Reservation_root"
-              action="view_checkout"
-              sequence="12"/>
 </odoo>

@@ -21,7 +21,7 @@ class Reservation(models.Model):
     _rec_name = 'name'
 
     name = fields.Char(string='Booking Reference', required=True, copy=False, readonly=True,
-                       default=lambda self: _('New'))
+                       default=lambda self: _('New-Reservation'))
     num_person = fields.Integer(string='Number of Persons', default=1,required=True)
     reservation_line_ids = fields.One2many('room.reservation.line', "reservation_id", string='Booking Info')
     state = fields.Selection([('draft', 'Draft'), ('confirm',
