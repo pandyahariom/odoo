@@ -40,23 +40,39 @@ class SaleOrder(models.Model):
       return result
 
     #Task-2: Only update on cancel state
-    def _action_cancel(self):
-      old_state=self.state
-      dictionary=dict(self._fields['state'].selection)
-      result=super(SaleOrder,self)._action_cancel()
-      for order in self:
-            partner=order.partner_id
-            message="Sales Order:"+self['name']+" State Updated from "+dictionary[old_state] +" to "+dictionary[self.state]
-            partner.message_post(body=_(message))
-      return result
+    # def _action_cancel(self):
+    #   old_state=self.state
+    #   dictionary=dict(self._fields['state'].selection)
+    #   result=super(SaleOrder,self)._action_cancel()
+    #   for order in self:
+    #         partner=order.partner_id
+    #         message="Sales Order:"+self['name']+" State Updated from "+dictionary[old_state] +" to "+dictionary[self.state]
+    #         partner.message_post(body=_(message))
+    #   return result
     
     #Task-2: With Some Bug
-    @api.onchange('state')
-    def _onchange_state(self):
-      if(self.state != 'draft'):
-        partner = self.env['res.partner'].browse(self.env.context.get('partner_id'))
-        message="Sales Order:"+self['name']+"+ State Updated to "+self.state
-        partner.message_post(body=_(message))
-      else:
-        print("Draft State")
+    # @api.onchange('state')
+    # def _onchange_state(self):
+    #   if(self.state != 'draft'):
+    #     partner = self.env['res.partner'].browse(self.env.context.get('partner_id'))
+    #     message="Sales Order:"+self['name']+"+ State Updated to "+self.state
+    #     partner.message_post(body=_(message))
+    #   else:
+    #     print("Draft State")
     
+    def write(self,vals):
+      if('state' in vals):
+        dictionary=dict(self._fields['state'].selection)
+
+        new_state=vals['state']
+        #Check if current write is 1st write of state(i.e. draft)
+        if(self['state']):
+          old_state=self['state']
+        else:
+          old_state=""
+
+        message="Sales Order:"+self['name']+" State Updated from "+dictionary[old_state] +" to "+dictionary[new_state]
+        self.partner_id.message_post(body=_(message))
+
+      result=super(SaleOrder,self).write(vals)
+      return result
