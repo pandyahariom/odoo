@@ -19,8 +19,22 @@ class SaleOrder(models.Model):
           partner.message_post(body=_(message))
         return result
     
-    #Task-3
     def write(self,vals):
+      #Task-2
+      if('state' in vals):
+        dictionary=dict(self._fields['state'].selection)
+
+        new_state=vals['state']
+        #Check if current write is 1st write of state(i.e. draft)
+        if(self['state']):
+          old_state=self['state']
+        else:
+          old_state=""
+
+        message="Sales Order:"+self['name']+" State Updated from "+dictionary[old_state] +" to "+dictionary[new_state]
+        self.partner_id.message_post(body=_(message))
+
+      #Task-3
       if('validity_date' in vals):
         new_validity=vals['validity_date']
         
@@ -38,7 +52,8 @@ class SaleOrder(models.Model):
 
       result=super(SaleOrder,self).write(vals)
       return result
-
+  
+  
     #Task-2: Only update on cancel state
     # def _action_cancel(self):
     #   old_state=self.state
@@ -59,20 +74,3 @@ class SaleOrder(models.Model):
     #     partner.message_post(body=_(message))
     #   else:
     #     print("Draft State")
-    
-    def write(self,vals):
-      if('state' in vals):
-        dictionary=dict(self._fields['state'].selection)
-
-        new_state=vals['state']
-        #Check if current write is 1st write of state(i.e. draft)
-        if(self['state']):
-          old_state=self['state']
-        else:
-          old_state=""
-
-        message="Sales Order:"+self['name']+" State Updated from "+dictionary[old_state] +" to "+dictionary[new_state]
-        self.partner_id.message_post(body=_(message))
-
-      result=super(SaleOrder,self).write(vals)
-      return result
