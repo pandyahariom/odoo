@@ -4,73 +4,69 @@ from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 
 
+#Note to ME: Add Test cases for all tasks
 class SaleOrder(models.Model):
     _inherit='sale.order'
     
-    #Task-1
+    ##Task-1 : Chatter Message on New Order
     @api.model
     def create(self, vals):
         result = super(SaleOrder, self).create(vals)
+
         if 'partner_id' in vals:
           partner = self.env['res.partner'].browse(vals.get('partner_id'))
-          order=self.env['sale.order'].browse(vals.get('order_id'))
-          print(order)
-          message="Sales Order:"+vals['name']+" is created for "+partner.name
+          message = f"Sales Order: {vals['name']} is created for {partner.name}"
           partner.message_post(body=_(message))
+
         return result
     
-    def write(self,vals):
-      #Task-2
-      if('state' in vals):
-        dictionary=dict(self._fields['state'].selection)
+    def write(self, vals):
+     
+      dictionary = dict(self._fields['state'].selection) 
 
-        new_state=vals['state']
-        #Check if current write is 1st write of state(i.e. draft)
-        if(self['state']):
-          old_state=self['state']
-        else:
-          old_state=""
+      for record in self:
 
-        message="Sales Order:"+self['name']+" State Updated from "+dictionary[old_state] +" to "+dictionary[new_state]
-        self.partner_id.message_post(body=_(message))
+        ##Task-2 Chatter Message on state change
+        if 'state' in vals:
 
-      #Task-3
-      if('validity_date' in vals):
-        new_validity=vals['validity_date']
+          old_state = record.state
+          new_state = vals['state']
+
+          message = f"Sales Order: {record['name']} State Updated from {dictionary[old_state]} to {dictionary[new_state]}"
+          record.partner_id.message_post(body=_(message))
+
+
+        ##Task-3 Chatter Message on field change (Expiration and Pricelist)
+
+        #Task-3(a) : Check on Expiration(validity_date)
+        if 'validity_date' in vals :
+            new_validity=vals['validity_date']
         
-        #Check if current write is 1st write of validity_date
-        if(self['validity_date']):
-          #self['validity_date'] is datetime object. 
-          #Fetching Date string similar to format of new_validity
-          old_validity=self['validity_date'].strftime("%Y-%m-%d")
-        else:
-          old_validity="No Date"
+            #Check if current write is 1st write of validity_date
+            if record['validity_date'] :
+              #self['validity_date'] is datetime object. 
+              #Fetching Date string similar to format of new_validity
+              old_validity = record.validity_date.strftime("%Y-%m-%d")
+            else:
+              old_validity = "No Date"
 
-        if(old_validity != new_validity):
-         message="Sales Order:"+self['name']+" Expiration Date Updated from "+old_validity +" to "+new_validity
-         self.partner_id.message_post(body=_(message))
+            if old_validity != new_validity :
+              message = f"Sales Order: {record['name']} Expiration Date Updated from {old_validity} to {new_validity}"
+              record.partner_id.message_post(body=_(message))
+
+
+        #Task-3(b) : Check on Pricelist(pricelist_id)
+        if 'pricelist_id' in vals :
+            new_pricelist=record.env['product.pricelist'].browse(vals.get('pricelist_id')).name
+        
+            #Check if current write is 1st write of validity_date
+            if record.pricelist_id :
+              old_pricelist = record.pricelist_id.name
+            else:
+              old_pricelist = "Empty"
+
+            message = f"Sales Order: {record['name']} Pricelist Updated from {old_pricelist} to {new_pricelist}"
+            record.partner_id.message_post(body=_(message))
 
       result=super(SaleOrder,self).write(vals)
       return result
-  
-  
-    #Task-2: Only update on cancel state
-    # def _action_cancel(self):
-    #   old_state=self.state
-    #   dictionary=dict(self._fields['state'].selection)
-    #   result=super(SaleOrder,self)._action_cancel()
-    #   for order in self:
-    #         partner=order.partner_id
-    #         message="Sales Order:"+self['name']+" State Updated from "+dictionary[old_state] +" to "+dictionary[self.state]
-    #         partner.message_post(body=_(message))
-    #   return result
-    
-    #Task-2: With Some Bug
-    # @api.onchange('state')
-    # def _onchange_state(self):
-    #   if(self.state != 'draft'):
-    #     partner = self.env['res.partner'].browse(self.env.context.get('partner_id'))
-    #     message="Sales Order:"+self['name']+"+ State Updated to "+self.state
-    #     partner.message_post(body=_(message))
-    #   else:
-    #     print("Draft State")

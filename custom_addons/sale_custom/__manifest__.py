@@ -8,15 +8,11 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['sale','base'],
+    'depends': ['sale'],
 
-    # always loaded
-    'data': [
-        # 'security/ir.model.access.csv',
-        #'views/views.xml',
-        #'views/templates.xml',
-    ],
+    "installable": True,
     "auto_install": True,
+    
     "license":"LGPL-3"
 
 }
