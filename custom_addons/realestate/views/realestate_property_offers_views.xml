@@ -1,42 +1,42 @@
 <odoo>
-     <!-- explicit list view definition -->
-     <record model="ir.ui.view" id="realestate.property_offer_list">
-      <field name="name">Property Offers</field>
-      <field name="model">realestate.property.offer</field>
-      <field name="arch" type="xml">
-        <tree editable="top">
-            <field name="price"/>
-            <field name="partner_id"/>
-            <field name="validity"/>
-            <field name="date_deadline"/>
-            <button name="action_accept" string="Accept" type="object" icon="fa-check" attrs="{'invisible': ['|',('status', '=', 'accepted'),('disable_button', '=', True)]}"/>
-            <button name="action_reject" string="Reject" type="object" icon="fa-times" attrs="{'invisible': [('disable_button', '=', True)]}"/>
+  <!-- explicit list view definition -->
+  <record model="ir.ui.view" id="realestate.property_offer_list">
+    <field name="name">Property Offers</field>
+    <field name="model">realestate.property.offer</field>
+    <field name="arch" type="xml">
+      <tree editable="top">
+        <field name="price" />
+        <field name="partner_id" />
+        <field name="validity" />
+        <field name="date_deadline" />
+        <button name="action_accept" string="Accept" type="object" icon="fa-check" attrs="{'invisible': [('disable_accept_button', '=', True)]}" />
+        <button name="action_reject" string="Reject" type="object" icon="fa-times" attrs="{'invisible': [('disable_button', '=', True)]}" />
+        <field name="status" invisible="True" />
+        <field name="disable_button" invisible="True" />
+        <field name="disable_accept_button" invisible="True" />
+      </tree>
+    </field>
+  </record>
+
+  <!-- explicit form view definition -->
+  <record model="ir.ui.view" id="realestate.property_offer_form">
+    <field name="name">Property Offers</field>
+    <field name="model">realestate.property.offer</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group col='6'>
+            <field name="price" />
+            <field name="partner_id" />
+            <field name="validity" />
+            <field name="date_deadline" />
             <field name="status" />
-            <field name="disable_button" invisible="True"/>
-        </tree>
-      </field>
-      </record>
-
-     <!-- explicit form view definition -->
-     <record model="ir.ui.view" id="realestate.property_offer_form">
-      <field name="name">Property Offers</field>
-      <field name="model">realestate.property.offer</field>
-      <field name="arch" type="xml">
-        <form>
-          <sheet>
-            <group col='6'>
-              <field name="price"/>
-              <field name="partner_id"/>
-              <field name="validity"/>
-              <field name="date_deadline"/>
-              <field name="status"/>
-            </group>
-          </sheet>
-        </form>
-      </field>
-      </record>
-     <!-- explicit Search view definition -->
-
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+  <!-- explicit Search view definition -->
 
 
 </odoo>
