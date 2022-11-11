@@ -13,6 +13,25 @@ print("l1: ", id(l1), " l2: ", id(l2), " l1[1] :", id(l1[7]), " l2[1] :", id(l2[
 # interesting way to print list in reverse (usual way l1.reverse() )
 print("Reverse:", l1[-1::-1])
 
+for _ in range(90):
+    print("*", end="")
+print("\nList Comprehensions\n")
+
+lc1 = [x * 2 for x in range(10)]
+lc2 = [x * x for x in lc1 if not x % 2]
+lc3 = [(x, x + y, y) for x in lc1 for y in lc2 if x != y]
+print("lc1:", lc1, "\nlc2:", lc2, "\nlc3:", lc3)
+
+# Nesting of list comprehension
+matrix = [
+    [1, 2, 3, 4],
+    [5, 6, 7, 8],
+    [9, 10, 11, 12],
+]
+lc4 = [[row[i] for row in matrix] for i in range(4)]
+print("\nlc4:", lc4)
+lc4 = list(zip(*matrix))
+print("lc4 using zip:", lc4)
 
 for _ in range(90):
     print("*", end="")
