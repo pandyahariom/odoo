@@ -10,8 +10,10 @@ l2[1] = 100
 print("l1: ", l1, " l2: ", l2)
 print("l1: ", id(l1), " l2: ", id(l2), " l1[1] :", id(l1[7]), " l2[1] :", id(l2[1]))
 
-# interesting way to print list in reverse (usual way l1.reverse() )
+# interesting ways to print list in reverse (usual way l1.reverse() )
 print("Reverse:", l1[-1::-1])
+print("Reverse:", l1[::-1])
+
 
 for _ in range(90):
     print("*", end="")
@@ -38,8 +40,12 @@ for _ in range(90):
 print("\nMap\n")
 
 
-# Courtesy for map, reduce, zip, filter : https://medium.com/@lokeshsharma596/python-lambda-map-filter-reduce-and-zip-function-c59d8946a3ce
+# Courtesy for map, reduce, zip, filter : \
+# https://medium.com/@lokeshsharma596/python-lambda-map-filter-reduce-and-zip-function-c59d8946a3ce
+# https://www.learnpython.org/en/Map%2C_Filter%2C_Reduce
+
 # MAP: Apply map function to all items of iterable and create new iterable with mapped data
+# syntax: map(func, *iterables) (*iterables means multiple iterables are accepted)
 people = ["hariom", "ami", "dhyansh", "developer"]
 up = list(map(lambda x: x.upper(), people))
 print("Names in Upper:", up)
@@ -52,12 +58,26 @@ names = [
 first_names = list(map(lambda x: x["first"], names))
 print("First name:", first_names)
 
+# If the map function requires multiple arguments, multiple iterator needs to be passed to it
+# Ex. consider below list. we need to round values as per element position. i.e. 1.1, 2.22, 3.333 and so on
+data = [1.111111, 2.222222, 3.333333, 4.444444, 5.555555, 6.666666]
+new_list = list(map(round, data, range(len(data) + 1)))
+# Here note that we are pssing function object and not calling it(i.e. round not round())
+# map will call function object for each item of iterator(s)
+
+print("Map with Multiple iterators:", new_list)
+
+# We can also implement zip function with map
+print("zip using map:", *map(lambda a, b: (a, b), range(1, 11), range(11, 21)))
 
 for _ in range(90):
     print("*", end="")
 print("\nFilter\n")
 
 # FILTER: Apply filter function and create new iterable with items which satisfy the filter condition
+# syntax: filter(func, iterable) (accept only one iterable)
+# Function must take one argument and return true or false if not the filter returns same filter back
+
 odd_numbers = [*filter(lambda x: x % 2, range(10))]
 even_numbers = [*filter(lambda x: not x % 2, range(10))]
 print("Odd: ", odd_numbers, " Even: ", even_numbers)
@@ -83,9 +103,12 @@ for _ in range(90):
     print("*", end="")
 print("\nREDUCE from functools\n")
 
-# reduce: reduce the given iterator to single value as follows:
+# reduce : reduce(func, iterable[, initial])
+# reduce the given iterator to single value as follows:
 # apply function(that must accept two arguments) on 1st and 2nd element generete result.
 # apply function on result and 3rd and so on...
+# if initial is supplied it would be : result =initial and 1st,result=result and 2nd, result=resule and 3rd...
+
 from functools import reduce
 
 l3 = list(range(10))
@@ -94,14 +117,14 @@ print("Reduce:", reduce(lambda x, y: x + y, l3))
 
 for _ in range(90):
     print("*", end="")
-print("\nInteresting Examples\n")
+print("\nInteresting Examples of map/filter/zip \n")
 
 users = [
-    {"username": "samuel", "tweets": ["i love cake", "i am good"]},
-    {"username": "andy", "tweets": []},
-    {"username": "kumal", "tweets": ["India", "Python"]},
-    {"username": "sam", "tweets": []},
-    {"username": "lokesh", "tweets": ["i am good"]},
+    {"username": "hariom", "tweets": ["i love programming", "i am good"]},
+    {"username": "ami", "tweets": []},
+    {"username": "pooja", "tweets": ["India", "Python"]},
+    {"username": "dhyansh", "tweets": []},
+    {"username": "user", "tweets": ["i am good"]},
 ]
 
 # Filter out Users which dont have any tweets/Inactive Users
