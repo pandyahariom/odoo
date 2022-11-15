@@ -150,3 +150,111 @@ print(
         list(filter(lambda name: len(name["username"]) == 3, inactive)),
     )
 )
+
+
+
+for _ in range(90):
+    print("*", end="")
+print("\nFilter\n")
+
+#decorator: decorators wrap a function, modifying its behavior.
+#ref: https://realpython.com/primer-on-python-decorators/
+def outer_func(func):
+    def wrapper():
+        #Job of decorator
+        func()
+        print("Working")
+        func()
+        print()
+    return wrapper
+    
+@outer_func #or print_message=outer_func(print_message)
+def print_message():
+    print("Hello")
+
+import datetime
+@outer_func #or print_message=outer_func(print_message)
+def check_time():
+    print(datetime.datetime.now())
+
+print_message()
+check_time()
+
+#decorator with argument:use *args and **kwargs in the wrapper function. 
+# Then it will accept an arbitrary number of positional and keyword arguments.
+def outer_func_with_args(func):
+    def wrapper(*args,**kwargs):
+        #Job of decorator
+        func(*args,**kwargs)
+        print("Working")
+        func(*args,**kwargs)
+        print()
+    return wrapper
+
+#now it will work with any no argument or n argument functions
+@outer_func_with_args
+def print_message_without_arg():
+    print(f"Hello User!!")
+
+@outer_func_with_args
+def print_message_with_arg(input):
+    print(f"Hello {input}!!")
+
+print_message_without_arg()
+print_message_with_arg("Hariom")
+
+
+#Final version with added following points 
+#1)Our current decorator will ate the value return by function: you should return it
+#2) when we use func_name.__name__ it should return name of function not the decorator name
+#to do so:  use @functools.wraps decorator, prior to our wrapper function 
+
+import functools
+def final_outer(func):
+    @functools.wraps(func)
+    def wrapper(*args,**kwargs):
+        #Job of decorator
+        func(*args,**kwargs)
+        func(*args,**kwargs)
+        return func(*args,**kwargs) #note that we should return only 1 value from the decorator.Here, let say we want to return the value of last call
+    return wrapper
+
+@final_outer
+def test1():
+    print("No arg Example")
+
+@final_outer
+def test2(a):
+    return f"One positional arg: {a+10} Example"
+
+@final_outer
+def test3(k1='a1'):
+    print(f"One keyword arg: {k1} Example")
+
+@final_outer
+def test4(a,k1='a1'):
+    return f"Both args:{a} {k1} Example"
+
+test1()
+print(test2(10)) #3 calls but return is from last call
+test3(k1=10)
+result=test4(10,k1=20) #3 calls but return is from last call
+print(result)
+
+# General Standard Template
+# import functools
+# def decorator(func):
+#     @functools.wraps(func)
+#     def wrapper_decorator(*args, **kwargs):
+#         # Do something before
+#         value = func(*args, **kwargs)
+#         # Do something after
+#         return value
+#     return wrapper_decorator
+
+#Few useful decorators are given at : 
+# https://realpython.com/primer-on-python-decorators/#a-few-real-world-examples
+# https://realpython.com/primer-on-python-decorators/#more-real-world-examples
+#Few useful python builtin decorators:
+# The @classmethod and @staticmethod decorators are used to define methods inside a class namespace that are not connected to a particular instance of that class. 
+# The @property decorator is used to customize getters and setters for class attributes. 
