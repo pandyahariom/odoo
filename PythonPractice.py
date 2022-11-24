@@ -15,11 +15,10 @@ print("Reverse:", l1[-1::-1])
 print("Reverse:", l1[::-1])
 
 
-for _ in range(90):
-    print("*", end="")
+print("*" * 90)
 print("\nList Comprehensions\n")
 
-lc1 = [x * 2 for x in range(10)]
+lc1 = [x * 2 for x in range(10)]  # or lc1 = [*range(10)]
 lc2 = [x * x for x in lc1 if not x % 2]
 lc3 = [(x, x + y, y) for x in lc1 for y in lc2 if x != y]
 print("lc1:", lc1, "\nlc2:", lc2, "\nlc3:", lc3)
@@ -35,8 +34,7 @@ print("\nlc4:", lc4)
 lc4 = list(zip(*matrix))
 print("lc4 using zip:", lc4)
 
-for _ in range(90):
-    print("*", end="")
+print("*" * 90)
 print("\nMap\n")
 
 
@@ -143,7 +141,8 @@ print(
     )
 )
 
-# Return a new list of inactive users with the string “Inactive User:” + name(in upper) ,but only if length of name is 3
+# Return a new list of inactive users with the string “Inactive User:” + name(in upper)
+# ,but only if length of name is 3
 print(
     *map(
         lambda data: "Inactive User:" + data["username"].upper(),
